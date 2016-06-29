@@ -109,6 +109,14 @@ function Configmgmt() {
                 logger.log('Exting getDBModelFromID ' + id.toString());
                 callback(null, 'd4dModelMastersNexusServer');
                 break;
+            case "27":
+                logger.log('Exting getDBModelFromID ' + id.toString());
+                callback(null, 'd4dModelBitbucketConfig');
+                break;
+            case "28":
+                logger.log('Exting getDBModelFromID ' + id.toString());
+                callback(null, 'd4dModelOctopusConfig');
+                break;
         }
     };
 
@@ -183,6 +191,16 @@ function Configmgmt() {
                 logger.log('Exting getDBModelFromID ' + id.toString());
                 return ('nexusserver');
                 break;
+            case "27":
+                logger.log('Exting getDBModelFromID ' + id.toString());
+                return ('bitbucketserver');
+                break;
+            case "28":
+                logger.log('Exting getDBModelFromID ' + id.toString());
+                return ('octopusserver');
+                break;
+
+                
 
         };
     };

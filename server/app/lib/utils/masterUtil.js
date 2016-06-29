@@ -515,6 +515,72 @@ var MasterUtil = function() {
         });
     }
 
+    // Return all Bitbucket
+    this.getBitbucket = function(orgList, callback) {
+        var bitbucketList = [];
+        var rowIds = [];
+        for (var x = 0; x < orgList.length; x++) {
+            rowIds.push(orgList[x].rowid);
+        }
+        logger.debug("org rowids: ", rowIds);
+        d4dModelNew.d4dModelBitbucketConfig.find({
+            orgname_rowid: {
+                $in: rowIds
+            }
+        }, function(err, bitbucket) {
+            if (bitbucket) {
+                configmgmtDao.getRowids(function(err, rowidlist) {
+                    for (var i = 0; i < bitbucket.length; i++) {
+                        if (bitbucket[i].id === '27') {
+                            names = configmgmtDao.convertRowIDToValue(bitbucket[i].orgname_rowid, rowidlist)
+                            bitbucket[i].orgname = names;
+                            bitbucketList.push(bitbucket[i]);
+                        }
+                    }
+                    callback(null, bitbucketList);
+                    return;
+                });
+            } else {
+                callback(err, null);
+                return;
+            }
+
+        });
+    }
+
+    this.getOctopus = function(orgList, callback) {
+        var octopusList = [];
+        var rowIds = [];
+        for (var x = 0; x < orgList.length; x++) {
+            rowIds.push(orgList[x].rowid);
+        }
+        logger.debug("org rowids: ", rowIds);
+        d4dModelNew.d4dModelOctopusConfig.find({
+            orgname_rowid: {
+                $in: rowIds
+            }
+        }, function(err, octopus) {
+            if (octopus) {
+                configmgmtDao.getRowids(function(err, rowidlist) {
+                    for (var i = 0; i < octopus.length; i++) {
+                        if (octopus[i].id === '28') {
+                            names = configmgmtDao.convertRowIDToValue(octopus[i].orgname_rowid, rowidlist)
+                            octopus[i].orgname = names;
+                            octopusList.push(octopus[i]);
+                        }
+                    }
+                    callback(null, octopusList);
+                    return;
+                });
+            } else {
+                callback(err, null);
+                return;
+            }
+
+        });
+    }
+
+
     // Return All Orgs specific to User
     this.getActiveOrgs = function(loggedInUser, callback) {
         var orgList = [];

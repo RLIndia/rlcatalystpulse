@@ -736,7 +736,28 @@ module.exports.setRoutes = function(app, sessionVerification) {
                             return;
                         });
 
-                    } else if (req.params.id === '6') {
+                    } else if (req.params.id === '27') {
+                        // For Jenkins
+                        masterUtil.getBitbucket(orgList, function(err, bitbucketList) {
+                            if (err) {
+                                res.status(500).send('Not able to fetch Bitbucket.');
+                            }
+                            res.send(bitbucketList);
+                            return;
+                        });
+
+                    } else if (req.params.id === '28') {
+                        // For Octopus
+                        masterUtil.getOctopus(orgList, function(err, octopusList) {
+                            if (err) {
+                                res.status(500).send('Not able to fetch Octopus.');
+                            }
+                            res.send(octopusList);
+                            return;
+                        });
+
+                    } 
+                    else if (req.params.id === '6') {
                         // For User Role
                         masterUtil.getUserRoles(function(err, userRoleList) {
                             if (err) {
@@ -892,7 +913,27 @@ module.exports.setRoutes = function(app, sessionVerification) {
                             return;
                         });
 
-                    } else if (req.params.id === '6') {
+                    } else if (req.params.id === '27') {
+                        // For Bitbucket
+                        masterUtil.getBitbucket(orgList, function(err, bitbucketList) {
+                            if (err) {
+                                res.status(500).send('Not able to fetch bitbucket.');
+                            }
+                            res.send(bitbucketList);
+                            return;
+                        });
+
+                    }else if (req.params.id === '28') {
+                        // For Bitbucket
+                        masterUtil.getOctopus(orgList, function(err, octopusList) {
+                            if (err) {
+                                res.status(500).send('Not able to fetch Octopus.');
+                            }
+                            res.send(octopusList);
+                            return;
+                        });
+
+                    }else if (req.params.id === '6') {
                         // For User Role
                         masterUtil.getUserRoles(function(err, userRoleList) {
                             if (err) {
@@ -2563,7 +2604,7 @@ module.exports.setRoutes = function(app, sessionVerification) {
                                         eval('var mastersrdb =  new d4dModelNew.' + dbtype + '({' + JSON.parse(FLD) + '})');
                                         mastersrdb.save(function(err, data) {
                                             if (err) {
-                                                logger.error('Hit Save error', err);
+                                                logger.error('Hit Save error mastersrdb', err);
                                                 res.send(500);
                                                 return;
 

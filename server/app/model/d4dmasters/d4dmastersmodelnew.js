@@ -939,6 +939,115 @@ var d4dMastersJenkinsConfig = new mongoose.Schema({
 });
 var d4dModelJenkinsConfig = mongoose.model('d4dModelJenkinsConfig', d4dMastersJenkinsConfig, 'd4dmastersnew');
 
+
+var d4dMastersBitbucketConfig = new mongoose.Schema({
+    id: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    bitbucketname: {
+        type: String,
+        required: true,
+        trim: true,
+        validate: nameValidator
+    },
+    bitbucketurl: {
+        type: String,
+        required: false,
+        trim: true
+    },
+    bitbucketusername: {
+        type: String,
+        required: true,
+        trim: true,
+        validate: nameValidator
+    },
+    bitbucketpassword: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    orgname: {
+        type: [String],
+        required: true,
+        trim: true,
+        validate: nameValidator
+    },
+    orgname_rowid: {
+        type: [String],
+        trim: true
+    },
+    active: {
+        type: Boolean,
+        trim: true,
+        default: true
+    },
+    rowid: {
+        type: String,
+        required: true,
+        trim: true
+    }
+}, {
+    collection: 'd4dmastersnew'
+});
+var d4dModelBitbucketConfig = mongoose.model('d4dModelBitbucketConfig', d4dMastersBitbucketConfig, 'd4dmastersnew');
+
+
+var d4dMastersOctopusConfig = new mongoose.Schema({
+    id: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    octopusname: {
+        type: String,
+        required: true,
+        trim: true,
+        validate: nameValidator
+    },
+    octopusurl: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    octopuskey: {
+        type: String,
+        required: true,
+        trim: true
+       
+    },
+    
+    orgname: {
+        type: [String],
+        required: true,
+        trim: true,
+        validate: nameValidator
+    },
+    orgname_rowid: {
+        type: [String],
+        trim: true
+    },
+    active: {
+        type: Boolean,
+        trim: true,
+        default: true
+    },
+    rowid: {
+        type: String,
+        required: true,
+        trim: true
+    }
+}, {
+    collection: 'd4dmastersnew'
+});
+var d4dModelOctopusConfig = mongoose.model('d4dModelOctopusConfig', d4dMastersOctopusConfig, 'd4dmastersnew');
+
+
+
+
+
+
 var d4dMastersProviders = new mongoose.Schema({
     id: {
         type: String,
@@ -1321,3 +1430,5 @@ module.exports.d4dModelMastersImages = d4dModelMastersImages;
 module.exports.d4dModelMastersJira = d4dModelMastersJira;
 module.exports.d4dModelMastersPuppetServer = d4dModelMastersPuppetServer;
 module.exports.d4dModelMastersNexusServer = d4dModelMastersNexusServer;
+module.exports.d4dModelBitbucketConfig = d4dModelBitbucketConfig;
+module.exports.d4dModelOctopusConfig = d4dModelOctopusConfig;
