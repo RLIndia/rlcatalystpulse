@@ -104,7 +104,7 @@ public class DeployServiceImpl implements DeployService {
             ArrayList<EnvironmentComponent> toRemove = new ArrayList<EnvironmentComponent>();
             ArrayList<EnvironmentComponent> toAdd = new ArrayList<EnvironmentComponent>();
             while (alreadyAddedIter.hasNext()) {
-                EnvironmentComponent ec = (EnvironmentComponent) alreadyAddedIter
+                EnvironmentComponent ec = alreadyAddedIter
                         .next();
                 if (component.getComponentName().equalsIgnoreCase(
                         ec.getComponentName())) {

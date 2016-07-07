@@ -23,6 +23,7 @@ var express = require("express");
 var path = require("path");
 var auth = require('./routes_authentication');
 var chef = require('./routes_chef.js');
+var chefcollector = require('./routes_chefcollector.js');
 var users = require('./routes_users');
 var d4dMasters = require('./routes_d4dMasters');
 var organizations = require('./routes_organizations');
@@ -88,6 +89,8 @@ module.exports.setRoutes = function(app) {
     instances.setRoutes(app, sessionVerificationFunc);
 
     chef.setRoutes(app, sessionVerificationFunc);
+
+    chefcollector.setRoutes(app);
 
     users.setRoutes(app, sessionVerificationFunc);
 
