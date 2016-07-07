@@ -25,6 +25,9 @@ server/app/vspheretest.js
 *.npmrc
 *.lock
 *.svn
+*.index
+Hygieia/.metadata/
+Hygieia/.mvn/
 server/config
 server/logs
 server/catdata/*
