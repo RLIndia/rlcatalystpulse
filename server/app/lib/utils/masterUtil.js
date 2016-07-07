@@ -580,6 +580,41 @@ var MasterUtil = function() {
         });
     }
 
+    this.getJira = function(orgList, callback) {
+        var jiraList = [];
+        var rowIds = [];
+        for (var x = 0; x < orgList.length; x++) {
+            rowIds.push(orgList[x].rowid);
+        }
+        logger.debug("org rowids: ", rowIds);
+        d4dModelNew.d4dModelMastersJira.find({
+            orgname_rowid: {
+                $in: rowIds
+            }
+        }, function(err, jira) {
+            if (jira) {
+                
+                configmgmtDao.getRowids(function(err, rowidlist) {
+                    for (var i = 0; i < jira.length; i++) {
+                        logger.debug(jira[i].id);
+                        if (jira[i].id === '23') {
+
+                            names = configmgmtDao.convertRowIDToValue(jira[i].orgname_rowid, rowidlist)
+                            jira[i].orgname = names;
+                            jiraList.push(jira[i]);
+                        }
+                    }
+                    callback(null, jiraList);
+                    return;
+                });
+            } else {
+                callback(err, null);
+                return;
+            }
+
+        });
+    }
+
 
     // Return All Orgs specific to User
     this.getActiveOrgs = function(loggedInUser, callback) {

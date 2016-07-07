@@ -757,6 +757,18 @@ module.exports.setRoutes = function(app, sessionVerification) {
                         });
 
                     } 
+                    else if (req.params.id === '23') {
+                        // For Jira
+                        logger.debug("Entering getJira");
+                        masterUtil.getJira(orgList, function(err, jiraList) {
+                            if (err) {
+                                res.status(500).send('Not able to fetch Jira.');
+                            }
+                            res.send(jiraList);
+                            return;
+                        });
+
+                    } 
                     else if (req.params.id === '6') {
                         // For User Role
                         masterUtil.getUserRoles(function(err, userRoleList) {
@@ -924,12 +936,22 @@ module.exports.setRoutes = function(app, sessionVerification) {
                         });
 
                     }else if (req.params.id === '28') {
-                        // For Bitbucket
+                        // For Octopus
                         masterUtil.getOctopus(orgList, function(err, octopusList) {
                             if (err) {
                                 res.status(500).send('Not able to fetch Octopus.');
                             }
                             res.send(octopusList);
+                            return;
+                        });
+
+                    }else if (req.params.id === '23') {
+                        // For Jira
+                        masterUtil.getJira(orgList, function(err, jiraList) {
+                            if (err) {
+                                res.status(500).send('Not able to fetch Jira.');
+                            }
+                            res.send(jiraList);
                             return;
                         });
 

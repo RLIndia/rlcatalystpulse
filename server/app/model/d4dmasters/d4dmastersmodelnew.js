@@ -1235,6 +1235,16 @@ var d4dMastersJira = new mongoose.Schema({
         type: String,
         required: true,
         trim: true
+    },    
+    orgname: {
+        type: [String],
+        required: true,
+        trim: true,
+        validate: nameValidator
+    },
+    orgname_rowid: {
+        type: [String],
+        trim: true
     },
     jiraname: {
         type: String,
@@ -1243,12 +1253,17 @@ var d4dMastersJira = new mongoose.Schema({
     },
     jirausername: {
         type: String,
-        required: true,
+     
         trim: true
     },
     jirapassword: {
         type: String,
-        required: true,
+       
+        trim: true
+    },
+    jirakey: {
+        type: String,
+       
         trim: true
     },
     jiraurl: {
