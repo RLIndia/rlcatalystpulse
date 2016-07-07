@@ -26,6 +26,7 @@ server/app/vspheretest.js
 *.lock
 *.svn
 *.index
+*.properties
 Hygieia/.metadata/
 Hygieia/.mvn/
 server/config
